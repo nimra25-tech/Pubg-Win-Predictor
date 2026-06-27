@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBG Miramar Win Predictor</title>
+    <style>
+        body {
+            /* Asal Desert Theme Image */
+            background-image: url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.75); /* Dark transparent box taaki background bhi dikhe aur text bhi parha jaye */
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 0 20px #e8a046; /* Sand/Desert orange glow */
+            backdrop-filter: blur(5px);
+        }
+        h1 {
+            text-align: center;
+            color: #ffb84d; /* Bright Desert Orange */
+            text-transform: uppercase;
+            font-size: 26px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #f1f1f1;
+        }
+        span {
+            color: #ffb84d;
+            font-size: 16px;
+        }
+        input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #ff9900;
+            color: #111;
+            border: none;
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #cc7a00;
+            color: white;
+            box-shadow: 0 0 10px #ff9900;
+        }
+        #result {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 25px;
+            min-height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Drop Into Miramar</h1>
+        
+        <div class="input-group">
+            <label>Kills: <span id="killsVal">0</span></label>
+            <input type="range" id="kills" min="0" max="20" value="0" oninput="updateVal('killsVal', this.value)">
+        </div>
+        <div class="input-group">
+            <label>Damage Dealt: <span id="dmgVal">0</span></label>
+            <input type="range" id="dmg" min="0" max="2500" value="0" oninput="updateVal('dmgVal', this.value)">
+        </div>
+        <div class="input-group">
+            <label>Walk Distance (m): <span id="walkVal">0</span></label>
+            <input type="range" id="walk" min="0" max="6000" value="0" oninput="updateVal('walkVal', this.value)">
+        </div>
+        <div class="input-group">
+            <label>Heals: <span id="healsVal">0</span></label>
+            <input type="range" id="heals" min="0" max="25" value="0" oninput="updateVal('healsVal', this.value)">
+        </div>
+        <div class="input-group">
+            <label>Boosts: <span id="boostsVal">0</span></label>
+            <input type="range" id="boosts" min="0" max="15" value="0" oninput="updateVal('boostsVal', this.value)">
+        </div>
+        <div class="input-group">
+            <label>Match Duration (seconds): <span id="durationVal">1500</span></label>
+            <input type="range" id="duration" min="500" max="2500" value="1500" oninput="updateVal('durationVal', this.value)">
+        </div>
+
+        <button onclick="predict()">Calculate Probability</button>
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
