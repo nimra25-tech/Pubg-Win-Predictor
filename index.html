@@ -3,115 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUBG Miramar Win Predictor</title>
-    <style>
-        body {
-            /* Asal Desert Theme Image */
-            background-image: url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=1920&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 40px 20px;
-        }
-        .container {
-            background: rgba(0, 0, 0, 0.75); /* Dark transparent box taaki background bhi dikhe aur text bhi parha jaye */
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            margin: auto;
-            box-shadow: 0 0 20px #e8a046; /* Sand/Desert orange glow */
-            backdrop-filter: blur(5px);
-        }
-        h1 {
-            text-align: center;
-            color: #ffb84d; /* Bright Desert Orange */
-            text-transform: uppercase;
-            font-size: 26px;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            font-size: 14px;
-            color: #f1f1f1;
-        }
-        span {
-            color: #ffb84d;
-            font-size: 16px;
-        }
-        input[type="range"] {
-            width: 100%;
-            cursor: pointer;
-        }
-        button {
-            width: 100%;
-            padding: 15px;
-            background-color: #ff9900;
-            color: #111;
-            border: none;
-            font-size: 18px;
-            font-weight: 900;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 8px;
-            margin-top: 15px;
-            transition: 0.3s;
-        }
-        button:hover {
-            background-color: #cc7a00;
-            color: white;
-            box-shadow: 0 0 10px #ff9900;
-        }
-        #result {
-            text-align: center;
-            font-size: 22px;
-            font-weight: bold;
-            margin-top: 25px;
-            min-height: 60px;
-        }
-    </style>
+    <title>PUBG Match Win Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Drop Into Miramar</h1>
+
+<div class="pubg-wrapper">
+    <div class="panel predictor-panel">
+        <h1 class="title">DROP INTO <span class="highlight">MIRAMAR</span></h1>
         
         <div class="input-group">
-            <label>Kills: <span id="killsVal">0</span></label>
-            <input type="range" id="kills" min="0" max="20" value="0" oninput="updateVal('killsVal', this.value)">
+            <label>KILLS: <span id="kills-val" class="highlight">8</span></label>
+            <input type="range" id="kills" min="0" max="20" value="8" class="pubg-slider">
         </div>
+        
         <div class="input-group">
-            <label>Damage Dealt: <span id="dmgVal">0</span></label>
-            <input type="range" id="dmg" min="0" max="2500" value="0" oninput="updateVal('dmgVal', this.value)">
+            <label>DAMAGE DEALT: <span id="dmg-val" class="highlight">808</span></label>
+            <input type="range" id="dmg" min="0" max="2000" value="808" class="pubg-slider">
         </div>
-        <div class="input-group">
-            <label>Walk Distance (m): <span id="walkVal">0</span></label>
-            <input type="range" id="walk" min="0" max="6000" value="0" oninput="updateVal('walkVal', this.value)">
-        </div>
-        <div class="input-group">
-            <label>Heals: <span id="healsVal">0</span></label>
-            <input type="range" id="heals" min="0" max="25" value="0" oninput="updateVal('healsVal', this.value)">
-        </div>
-        <div class="input-group">
-            <label>Boosts: <span id="boostsVal">0</span></label>
-            <input type="range" id="boosts" min="0" max="15" value="0" oninput="updateVal('boostsVal', this.value)">
-        </div>
-        <div class="input-group">
-            <label>Match Duration (seconds): <span id="durationVal">1500</span></label>
-            <input type="range" id="duration" min="500" max="2500" value="1500" oninput="updateVal('durationVal', this.value)">
-        </div>
-
-        <button onclick="predict()">Calculate Probability</button>
-        <div id="result"></div>
+        
+        <button class="btn-predict">CALCULATE PROBABILITY</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="panel analytics-panel">
+        <h2 class="section-title">MATCH ANALYTICS</h2>
+        <div class="chart-container">
+            <canvas id="probabilityChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="panel team-panel">
+    <h2 class="section-title">SQUAD ROSTER & EVALUATION</h2>
+    <div class="squad-grid">
+        
+        <div class="squad-member">
+            <div class="member-avatar">💻</div>
+            <h3>Nimra</h3>
+            <p class="role">IGL / Lead Developer</p>
+            <p class="contribution">Deployment, Git Management & Logic Integration</p>
+        </div>
+
+        <div class="squad-member">
+            <div class="member-avatar">🎯</div>
+            <h3>Sadaf</h3>
+            <p class="role">Fragger / Data Analyst</p>
+            <p class="contribution">Dataset Cleaning & Probability Modeling</p>
+        </div>
+
+        <div class="squad-member">
+            <div class="member-avatar">🎨</div>
+            <h3>Banin Fatima</h3>
+            <p class="role">Support / UI Developer</p>
+            <p class="contribution">Frontend Design & Interactive Sliders</p>
+        </div>
+
+        <div class="squad-member">
+            <div class="member-avatar">🔭</div>
+            <h3>Mahnoor</h3>
+            <p class="role">Sniper / Statistical Researcher</p>
+            <p class="contribution">Algorithm Verification & Feature Weights</p>
+        </div>
+        
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
