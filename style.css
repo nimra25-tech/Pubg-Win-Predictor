@@ -5,13 +5,13 @@ body {
     background-size: cover;
     background-color: #1a1a1a;
     font-family: 'Teko', sans-serif;
-    color: #FFFFFF; /* Changed to Pure White for better readability */
+    color: #FFFFFF; 
     margin: 0;
     padding: 20px;
     min-height: 100vh;
 }
 
-.highlight { color: #F2A900; } /* Keep this as your Gold theme */
+.highlight { color: #F2A900; } 
 
 .pubg-wrapper {
     display: flex;
